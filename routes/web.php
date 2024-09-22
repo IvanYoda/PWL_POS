@@ -1,5 +1,8 @@
 <?php
-
+use App\Http\Controllers\LevelController;
+use App\Http\Controllers\barangcontroller;
+use App\Http\Controllers\kategoriController;
+use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get(uri: '/level', action: [LevelController :: class, 'index']);
+
+Route::get(uri: '/barang',action: [barangcontroller :: class, 'index']);
+
+Route::get(uri: '/kategori',action: [kategoriController :: class, 'index']);
+
+Route::get(uri: '/user',action: [kategoriController :: class, 'index']);
+Route::get(uri: '/user',action: [userController :: class, 'index']);
