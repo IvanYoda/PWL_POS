@@ -1,43 +1,20 @@
 <?php
+
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\barangcontroller;
-use App\Http\Controllers\kategoriController;
-use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/', [WelcomeController::class, 'index']);
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => 'user'], function(): void {
+    Route::get('/', [UserController::class, 'index']);          // menampilkan halaman awal user
+    Route::post('/list', [UserController::class, 'list']);       // menampilkan data user dalam bentuk json untuk datatables
+    Route::get('/create', [UserController::class, 'create']);   // menampilkan halaman form tambah user
+    Route::post('/', [UserController::class, 'store']);         // menyimpan data user baru
+    Route::get('/{id}', [UserController::class, 'show']);       // menampilkan data detail user
+    Route::get('/{id}/edit', [UserController::class, 'edit']);  // menampilkan halaman form edit user
+    Route::put('/{id}', [UserController::class, 'update']);     // menyimpan perubahan data user
+    Route::delete('/{id}', [UserController::class, 'destroy']); // menghapus data user
 });
-
-Route::get(uri: '/level', action: [LevelController :: class, 'index']);
-
-Route::get(uri: '/barang',action: [barangcontroller :: class, 'index']);
-
-Route::get(uri: '/kategori',action: [kategoriController :: class, 'index']);
-
-Route::get(uri: '/user',action: [kategoriController :: class, 'index']);
-Route::get(uri: '/user',action: [userController :: class, 'index']);
-
-Route::get(uri: '/user/tambah', action: [userController::class, 'tambah']);
-
-Route::post(uri: '/user/tambah_simpan', action: [userController :: class, 'tambah_simpan']);
-
-Route :: get(uri: '/user/ubah/{id}', action: [userController :: class, 'ubah']);
-
-Route :: get(uri: '/user/ubah_simpan/{id}', action: [userController :: class, 'ubah_simpan']);
-
-Route:: get(uri: '/user/hapus/{id}', action: [userController :: class, 'hapus']);
-
-Route:: get( '/',[WelcomeController :: class, 'index']);
