@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\barangcontroller;
 use App\Http\Controllers\kategoriController;
 use App\Http\Controllers\userController;
@@ -38,3 +39,5 @@ Route :: get(uri: '/user/ubah/{id}', action: [userController :: class, 'ubah']);
 Route :: get(uri: '/user/ubah_simpan/{id}', action: [userController :: class, 'ubah_simpan']);
 
 Route:: get(uri: '/user/hapus/{id}', action: [userController :: class, 'hapus']);
+
+Route:: get( '/',[WelcomeController :: class, 'index']);
